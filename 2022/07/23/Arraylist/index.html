@@ -337,7 +337,7 @@
         <!-- action button -->
         <div class="text-center">
             <a href="mailto:haoyang_wei@126.com" class="trm-btn">
-                Contact Me
+                联系我
                 <i class="far fa-envelope"></i>
             </a>
         </div>
@@ -390,7 +390,7 @@
 <p>​                 把新元素添加到扩容以后的数组中</p>
 <h6 id="2-源码-JKD1-8"><a href="#2-源码-JKD1-8" class="headerlink" title="2.源码(JKD1.8)"></a>2.源码(JKD1.8)</h6><p>先把ArrayList中定义的一些属性粘出来方便下面源码分析</p>
 <p><code>java</code></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token keyword">extends</span> <span class="token class-name">AbstractList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token keyword">extends</span> <span class="token class-name">AbstractList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span>
         <span class="token keyword">implements</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span><span class="token punctuation">,</span> <span class="token class-name">RandomAccess</span><span class="token punctuation">,</span> <span class="token class-name">Cloneable</span><span class="token punctuation">,</span> <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span>Serializable</span>
 <span class="token punctuation">&#123;</span>
     <span class="token comment">/**
@@ -418,11 +418,11 @@
      * 列表大小，elementData中存储的元素个数
      */</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> size<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>首先看一下ArrayList的两个构造方法：</p>
 <p><code>java</code></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//带初始容量参数的构造函数。（用户自己指定容量）</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//带初始容量参数的构造函数。（用户自己指定容量）</span>
 <span class="token keyword">public</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token keyword">int</span> initialCapacity<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>initialCapacity <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token comment">//初始容量大于0</span>
     
@@ -444,19 +444,19 @@
 <span class="token comment">//默认构造函数，构造一个空列表(无参数构造)</span>
 <span class="token keyword">public</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>elementData <span class="token operator">=</span> DEFAULTCAPACITY_EMPTY_ELEMENTDATA<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在无参构造中，其实就是在用无参构造来创建对象的时候其实就是创建了一个空数组，长度为0,没有分配容量,当真正对数组进行添加元素操作时，才真正分配容量。即向数组中添加第一个元素时，数组容量扩为10。之后扩容会按照1.5倍增长。</p>
 <p>在有参构造中，传入的参数是正整数就按照传入的参数来确定创建数组的大小，否则异常。</p>
 <p>接下来重点，看扩容，扩容的方法就是 add(E e)</p>
-<pre class="language-none"><code class="language-none">public boolean add(E e) &#123;
+<pre class="line-numbers language-none"><code class="language-none">public boolean add(E e) &#123;
 	ensureCapacityInternal(size + 1);  &#x2F;&#x2F; list的size+1
 	elementData[size++] &#x3D; e; &#x2F;&#x2F; 将数据放到数组最后一个
 	return true;
-&#125;</code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>通过源码可以发现，其实add方法就两步，第一步：增加长度，第二步：添加元素到数组，第二步没什么说的，我们看看ensureCapacityInternal(int minCapacity)这个增加长度的方法。</p>
-<pre class="language-none"><code class="language-none">private static int calculateCapacity(Object[] elementData, int minCapacity) &#123;
+<pre class="line-numbers language-none"><code class="language-none">private static int calculateCapacity(Object[] elementData, int minCapacity) &#123;
       if (elementData &#x3D;&#x3D; DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;
           return Math.max(DEFAULT_CAPACITY, minCapacity);
       &#125;
@@ -473,16 +473,16 @@
       &#x2F;&#x2F; overflow-conscious code
       if (minCapacity - elementData.length &gt; 0)
           grow(minCapacity);
-  &#125;</code></pre>
+  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>这个地方可以看到，如果在添加的时候数组是空的，就直接给一个默认10的长度，否则的话就加1</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>minCapacity <span class="token operator">-</span> elementData<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
-           <span class="token function">grow</span><span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>minCapacity <span class="token operator">-</span> elementData<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+           <span class="token function">grow</span><span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>通过上面这个判断才是真正的增加长度，当需要的长度大于原来数组长度的时候就需要扩容了，相反的则不需要扩容。</p>
 <p><strong>grow（）方法</strong></p>
 <p><code>java</code></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">//要分配的最大数组大小</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//要分配的最大数组大小</span>
 <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAX_ARRAY_SIZE <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span>MAX_VALUE <span class="token operator">-</span> <span class="token number">8</span><span class="token punctuation">;</span>
 
 <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">grow</span><span class="token punctuation">(</span><span class="token keyword">int</span> minCapacity<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -501,7 +501,7 @@
         newCapacity <span class="token operator">=</span> <span class="token function">hugeCapacity</span><span class="token punctuation">(</span>minCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
    
     elementData <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> newCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>我们来仔细分析一下：</p>
 <ul>
@@ -514,7 +514,7 @@
 <p><strong>小结</strong>：在arraylist中增加一个对象的时候，Java会去检查arraylist，以确保已存在的数组中有足够的容量来存储这个新的对象。如果没有足够容量的话，那么就会新建一个长度更长的数组，旧的数组就会使用Arrays.copyOf方法被复制到新的数组中去，现有的数组引用指向了新的数组。</p>
 <h4 id="2-4什么是线程不安全和线程安全？"><a href="#2-4什么是线程不安全和线程安全？" class="headerlink" title="2.4什么是线程不安全和线程安全？"></a>2.4什么是线程不安全和线程安全？</h4><p>​		线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其他线程不能进行访问直到该线程读取完，其他线程才可使用。不会出现数据不一致或者数据污染。线程不安全就是不提供数据访问保护，有可能出现多个线程先后更改数据造成所得到的数据是脏数据。</p>
 <h4 id="2-5为什么说ArrayList是线程不安全的？"><a href="#2-5为什么说ArrayList是线程不安全的？" class="headerlink" title="2.5为什么说ArrayList是线程不安全的？"></a>2.5为什么说ArrayList是线程不安全的？</h4><h5 id="一-代码复现"><a href="#一-代码复现" class="headerlink" title="一 代码复现"></a>一 代码复现</h5><p><code>java</code></p>
-<pre class="language-java" data-language="java"><code class="language-java">	
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">	
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test01</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">ExecutorService</span> executorService <span class="token operator">=</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//定长线程池500</span>
@@ -553,14 +553,14 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>打印结果应为：50000，实际测试部分结果如下：</p>
 <p>list 长度为: 49972</p>
 <p>list 长度为: 49901</p>
 <p>由此可见是ArrayList做add操作时候，会丢失一些数据，所以所Array是线程不安全的。</p>
 <h5 id="二-源码分析-JKD1-8"><a href="#二-源码分析-JKD1-8" class="headerlink" title="二 源码分析(JKD1.8)"></a>二 源码分析(JKD1.8)</h5><p><code>java</code></p>
-<pre class="language-java" data-language="java"><code class="language-java">
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
 <span class="token comment">// Object[] elementData:ArrayList的数据结构是数组类型，list存放的数据就是存放在elementData里面的</span>
 <span class="token comment">// 第1步</span>
 <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">E</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -609,16 +609,16 @@
 		
 	<span class="token comment">// 复制elementData返回一个新的数组对象，这个时候list.add完成</span>
 	elementData <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> newCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>由此看到List集合做add（）时，第1步到第3步，都不会改变elementData对象，只有在第4步Arrays.copyOf的时候，返回一个新的数组对象。<br>因此：当有线程A、B同时进入grow方法，两个线程都会执行Arrays.copyOf方法，返回2个不同的elementData对象，<br>假如，A先返回，B后返回，那么List.elementData &#x3D;&#x3D; A.elementData，<br>然后B也返回后，这时List.elementData &#x3D;&#x3D; B.elementData<br>这时，B.elementData就把A.elementData数据给覆盖了。导致A.elementData被丢失</p>
 <p><strong>这样就出现了导致线程不安全的隐患，在多个线程进行add操作时可能会抛出并发读写异常和数据丢失，覆盖等问题。</strong></p>
-<h5 id="三-如何避免ArrayList的并发问题"><a href="#三-如何避免ArrayList的并发问题" class="headerlink" title="三 如何避免ArrayList的并发问题?"></a>三 如何避免ArrayList的并发问题?</h5><h6 id="1-使用Collections-synchronizedList-方法对ArrayList对象进行包装"><a href="#1-使用Collections-synchronizedList-方法对ArrayList对象进行包装" class="headerlink" title="1.使用Collections.synchronizedList()方法对ArrayList对象进行包装"></a>1.使用Collections.synchronizedList()方法对ArrayList对象进行包装</h6><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">synchronizedList</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h5 id="三-如何避免ArrayList的并发问题"><a href="#三-如何避免ArrayList的并发问题" class="headerlink" title="三 如何避免ArrayList的并发问题?"></a>三 如何避免ArrayList的并发问题?</h5><h6 id="1-使用Collections-synchronizedList-方法对ArrayList对象进行包装"><a href="#1-使用Collections-synchronizedList-方法对ArrayList对象进行包装" class="headerlink" title="1.使用Collections.synchronizedList()方法对ArrayList对象进行包装"></a>1.使用Collections.synchronizedList()方法对ArrayList对象进行包装</h6><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">synchronizedList</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>进行测试，结果正确，没有发现数据丢失问题。</p>
 <p>为什么synchronizedList（）方法可以解决并发问题？直接上源码(JKD1.8)</p>
 <p><code>java</code></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token function">synchronizedList</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> list<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token function">synchronizedList</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> list<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">return</span> <span class="token punctuation">(</span>list <span class="token keyword">instanceof</span> <span class="token class-name">RandomAccess</span> <span class="token operator">?</span>
             <span class="token keyword">new</span> <span class="token class-name">SynchronizedRandomAccessList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>list<span class="token punctuation">)</span> <span class="token operator">:</span>
             <span class="token keyword">new</span> <span class="token class-name">SynchronizedList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -677,15 +677,15 @@
                                             mutex<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">&#125;</span>
         <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h6 id="2-使用并发容器CopyOnWriteArrayList"><a href="#2-使用并发容器CopyOnWriteArrayList" class="headerlink" title="2.使用并发容器CopyOnWriteArrayList"></a>2.使用并发容器CopyOnWriteArrayList</h6><pre class="language-none"><code class="language-none">private static CopyOnWriteArrayList&lt;Integer&gt; list &#x3D; new CopyOnWriteArrayList&lt;Integer&gt;();</code></pre>
+<h6 id="2-使用并发容器CopyOnWriteArrayList"><a href="#2-使用并发容器CopyOnWriteArrayList" class="headerlink" title="2.使用并发容器CopyOnWriteArrayList"></a>2.使用并发容器CopyOnWriteArrayList</h6><pre class="line-numbers language-none"><code class="language-none">private static CopyOnWriteArrayList&lt;Integer&gt; list &#x3D; new CopyOnWriteArrayList&lt;Integer&gt;();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 <p>源码(JKD1.8)：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> <span class="token number">8673264195747942595L</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> <span class="token number">8673264195747942595L</span><span class="token punctuation">;</span>
  
 <span class="token keyword">transient</span> <span class="token keyword">final</span> <span class="token class-name">ReentrantLock</span> lock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
  
@@ -712,7 +712,7 @@
 	<span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
 	    lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 <p>从add方法知道：CopyOnWriteArrayList底层数组的扩容方式是一个一个地增加，而且每次把原来的元素通过Arrays.copy()方法copy到新数组中，然后在尾部加上新元素e.它的底层并发安全的保证是通过ReentrantLock进行保证的，CopyOnWriteArrayList和SynchronizedList的底层实现方式是不一样的，前者是通过Lock机制进行加锁，而后者是通过Synchronized进行加锁。</p>
@@ -731,7 +731,7 @@
                         <div class="col-lg-12">
                             <!-- title -->
                             <h5 class="trm-mb-40 trm-title-with-divider">
-                                Other Articles
+                                其他文章
                                 <span data-number="02"></span>
                             </h5>
                         </div>
@@ -744,7 +744,7 @@
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
                 <a href=" #.">
-                    unclassified
+                    未分类
                 </a>
             </div>
             <h5>
@@ -777,7 +777,7 @@
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
                 <a href=" #.">
-                    unclassified
+                    未分类
                 </a>
             </div>
             <h5>
@@ -817,9 +817,9 @@
         </span>
     </div>
     <div class="trm-label">
-        The blog has been lovely to run:
+        博客已萌萌哒运行:
         <span id="since" class="trm-accent-color"></span>
-        day
+        天
     </div>
 </footer>
 <script>

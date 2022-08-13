@@ -335,7 +335,7 @@
         <!-- action button -->
         <div class="text-center">
             <a href="mailto:haoyang_wei@126.com" class="trm-btn">
-                Contact Me
+                联系我
                 <i class="far fa-envelope"></i>
             </a>
         </div>
@@ -369,7 +369,7 @@
                     </div>
 
                     <article class="trm-card trm-publication">
-                        <h1 id="配置中心"><a href="#配置中心" class="headerlink" title="配置中心"></a>配置中心</h1><h2 id="yml配置"><a href="#yml配置" class="headerlink" title="yml配置"></a>yml配置</h2><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+                        <h1 id="配置中心"><a href="#配置中心" class="headerlink" title="配置中心"></a>配置中心</h1><h2 id="yml配置"><a href="#yml配置" class="headerlink" title="yml配置"></a>yml配置</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8888</span>
 <span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
@@ -442,10 +442,10 @@
 <span class="token key atrule">accessUrl</span><span class="token punctuation">:</span> /backend/<span class="token important">**</span><span class="token punctuation">,</span>/employee/login<span class="token punctuation">,</span>/front/<span class="token important">**</span><span class="token punctuation">,</span>/user/sendMsg<span class="token punctuation">,</span>/user/login<span class="token punctuation">,</span>/doc.html<span class="token punctuation">,</span>/webjars/<span class="token important">**</span><span class="token punctuation">,</span>/v2/api<span class="token punctuation">-</span>docs<span class="token punctuation">,</span>swagger<span class="token punctuation">-</span>ui.html<span class="token punctuation">,</span>/swagger<span class="token punctuation">-</span>resources<span class="token punctuation">,</span> /favicon.ico
 <span class="token comment"># 文件基础路径</span>
 <span class="token key atrule">basepath</span><span class="token punctuation">:</span> F<span class="token punctuation">:</span>\develop\springboot<span class="token punctuation">-</span>project<span class="token punctuation">-</span>step\reggie_take_out_61\target\classes\img\
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-<h2 id="统一返回值处理"><a href="#统一返回值处理" class="headerlink" title="统一返回值处理"></a>统一返回值处理</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>itheima<span class="token punctuation">.</span>reggie<span class="token punctuation">.</span>web<span class="token punctuation">.</span>result</span><span class="token punctuation">;</span>
+<h2 id="统一返回值处理"><a href="#统一返回值处理" class="headerlink" title="统一返回值处理"></a>统一返回值处理</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>itheima<span class="token punctuation">.</span>reggie<span class="token punctuation">.</span>web<span class="token punctuation">.</span>result</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>swagger<span class="token punctuation">.</span>annotations<span class="token punctuation">.</span></span><span class="token class-name">ApiModel</span></span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>swagger<span class="token punctuation">.</span>annotations<span class="token punctuation">.</span></span><span class="token class-name">ApiModelProperty</span></span><span class="token punctuation">;</span>
@@ -519,11 +519,11 @@
         <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="全局异常处理器处理"><a href="#全局异常处理器处理" class="headerlink" title="全局异常处理器处理"></a>全局异常处理器处理</h2><ul>
 <li>首先自定义异常</li>
-<li>其次开启全局异常处理器<pre class="language-java" data-language="java"><code class="language-java">
+<li>其次开启全局异常处理器<pre class="line-numbers language-java" data-language="java"><code class="language-java">
 <span class="token comment">//自定义异常类</span>
 
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BusinessException</span> <span class="token keyword">extends</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">&#123;</span>
@@ -548,8 +548,8 @@
         <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre></li>
-<li>全局异常处理<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>全局异常处理<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 全局异常控制器
  *
  * @Author WeiFanQuan
@@ -576,10 +576,10 @@
         <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre></li>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 <h2 id="全局封装返回值处理aop"><a href="#全局封装返回值处理aop" class="headerlink" title="全局封装返回值处理aop"></a>全局封装返回值处理aop</h2><ul>
-<li>切记要扫包要扫被加强的包<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<li>切记要扫包要扫被加强的包<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 基于Aop的返回值
  *
  * @Author WeiFanQuan
@@ -641,9 +641,9 @@
         <span class="token keyword">return</span> <span class="token class-name">R</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span> <span class="token string">"ok"</span><span class="token punctuation">,</span> returnValue <span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre></li>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<h2 id="过滤器处理"><a href="#过滤器处理" class="headerlink" title="过滤器处理"></a>过滤器处理</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h2 id="过滤器处理"><a href="#过滤器处理" class="headerlink" title="过滤器处理"></a>过滤器处理</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * @Author WeiFanQuan
  * @Date 2022/7/9 14:21
  * @Emil 8238504@qq.com
@@ -741,9 +741,9 @@
         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="线程变量工具类"><a href="#线程变量工具类" class="headerlink" title="线程变量工具类"></a>线程变量工具类</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/*每一个http请求都只会有同一个线程
+<h2 id="线程变量工具类"><a href="#线程变量工具类" class="headerlink" title="线程变量工具类"></a>线程变量工具类</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/*每一个http请求都只会有同一个线程
          ***线程唯一
          ***ThreadLocal对象唯一 : 所以使用static*/</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ThreadLocalUtils</span> <span class="token punctuation">&#123;</span>
@@ -760,9 +760,9 @@
         <span class="token comment">//获取线程中的变量</span>
         <span class="token keyword">return</span> tl<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="文件上传工具类"><a href="#文件上传工具类" class="headerlink" title="文件上传工具类"></a>文件上传工具类</h2><p>-文件上传依赖</p>
-<pre class="language-markup" data-language="markup"><code class="language-markup">
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">
 <span class="token comment">&lt;!-- commons工具组件 --></span>
        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>commons-lang<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
@@ -780,9 +780,9 @@
            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-io<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>itheima<span class="token punctuation">.</span>reggie<span class="token punctuation">.</span>utils</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>itheima<span class="token punctuation">.</span>reggie<span class="token punctuation">.</span>utils</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">File</span></span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">UUID</span></span><span class="token punctuation">;</span>
@@ -855,8 +855,8 @@
     <span class="token punctuation">&#125;</span>
 
 <span class="token punctuation">&#125;</span>
-</code></pre>
-<h3 id="文件上传代码演示"><a href="#文件上传代码演示" class="headerlink" title="文件上传代码演示"></a>文件上传代码演示</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="文件上传代码演示"><a href="#文件上传代码演示" class="headerlink" title="文件上传代码演示"></a>文件上传代码演示</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 文件上传控制类
  *
  * @Author WeiFanQuan
@@ -934,9 +934,9 @@
     <span class="token punctuation">&#125;</span>
 
 <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="日期自动填充"><a href="#日期自动填充" class="headerlink" title="日期自动填充"></a>日期自动填充</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<h2 id="日期自动填充"><a href="#日期自动填充" class="headerlink" title="日期自动填充"></a>日期自动填充</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyMetaObjectHandler</span> <span class="token keyword">implements</span> <span class="token class-name">MetaObjectHandler</span> <span class="token punctuation">&#123;</span>
 
     <span class="token annotation punctuation">@Override</span>
@@ -954,9 +954,9 @@
     <span class="token punctuation">&#125;</span>
 
 <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="mybatisplus分页器"><a href="#mybatisplus分页器" class="headerlink" title="mybatisplus分页器"></a>mybatisplus分页器</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<h2 id="mybatisplus分页器"><a href="#mybatisplus分页器" class="headerlink" title="mybatisplus分页器"></a>mybatisplus分页器</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
 <span class="token annotation punctuation">@MapperScan</span><span class="token punctuation">(</span><span class="token string">"com.itheima.reggie.mapper"</span><span class="token punctuation">)</span>        <span class="token comment">//设</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MybatisPlusConfig</span> <span class="token punctuation">&#123;</span>
     <span class="token comment">//mybatis分页拦截</span>
@@ -973,9 +973,9 @@
     <span class="token punctuation">&#125;</span>
 
  <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="时间日期以及id序列化"><a href="#时间日期以及id序列化" class="headerlink" title="时间日期以及id序列化"></a>时间日期以及id序列化</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Slf4j</span>
+<h2 id="时间日期以及id序列化"><a href="#时间日期以及id序列化" class="headerlink" title="时间日期以及id序列化"></a>时间日期以及id序列化</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Slf4j</span>
 <span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebMvcConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebMvcConfigurationSupport</span> <span class="token punctuation">&#123;</span>
     <span class="token comment">/**
@@ -1051,9 +1051,9 @@
     <span class="token punctuation">&#125;</span>
 
 
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h2><pre class="language-java" data-language="java"><code class="language-java">
+<h2 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">
 <span class="token comment">/**
  * 短信发送工具类
  */</span>
@@ -1123,9 +1123,9 @@
 	<span class="token punctuation">&#125;</span>
 
 <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="验证码-1"><a href="#验证码-1" class="headerlink" title="验证码"></a>验证码</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token operator">*</span><span class="token operator">*</span>
+<h2 id="验证码-1"><a href="#验证码-1" class="headerlink" title="验证码"></a>验证码</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">*</span><span class="token operator">*</span>
  <span class="token operator">*</span> 随机生成验证码工具类
  <span class="token operator">*</span><span class="token operator">/</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ValidateCodeUtils</span> <span class="token punctuation">&#123;</span>
@@ -1164,9 +1164,9 @@
         <span class="token keyword">return</span> capstr<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="reggie所有依赖"><a href="#reggie所有依赖" class="headerlink" title="reggie所有依赖"></a>reggie所有依赖</h2><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<h2 id="reggie所有依赖"><a href="#reggie所有依赖" class="headerlink" title="reggie所有依赖"></a>reggie所有依赖</h2><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -1346,7 +1346,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pluginRepositories</span><span class="token punctuation">></span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                     </article>
 
                     <!-- blog -->
@@ -1354,7 +1354,7 @@
                         <div class="col-lg-12">
                             <!-- title -->
                             <h5 class="trm-mb-40 trm-title-with-divider">
-                                Other Articles
+                                其他文章
                                 <span data-number="02"></span>
                             </h5>
                         </div>
@@ -1400,7 +1400,7 @@
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
                 <a href=" #.">
-                    unclassified
+                    未分类
                 </a>
             </div>
             <h5>
@@ -1440,9 +1440,9 @@
         </span>
     </div>
     <div class="trm-label">
-        The blog has been lovely to run:
+        博客已萌萌哒运行:
         <span id="since" class="trm-accent-color"></span>
-        day
+        天
     </div>
 </footer>
 <script>

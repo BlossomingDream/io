@@ -335,7 +335,7 @@
         <!-- action button -->
         <div class="text-center">
             <a href="mailto:haoyang_wei@126.com" class="trm-btn">
-                Contact Me
+                联系我
                 <i class="far fa-envelope"></i>
             </a>
         </div>
@@ -370,7 +370,7 @@
 
                     <article class="trm-card trm-publication">
                         <h1 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h1><h2 id="nacos注册中心"><a href="#nacos注册中心" class="headerlink" title="nacos注册中心"></a>nacos注册中心</h2><h3 id="依赖配置"><a href="#依赖配置" class="headerlink" title="依赖配置"></a>依赖配置</h3><ul>
-<li>springcloud要与springboot与springalibaba 版本要兼容<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<li>springcloud要与springboot与springalibaba 版本要兼容<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-alibaba-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
@@ -382,20 +382,20 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre></li>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<h3 id="yml-nacos配置"><a href="#yml-nacos配置" class="headerlink" title="yml.nacos配置"></a>yml.nacos配置</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<h3 id="yml-nacos配置"><a href="#yml-nacos配置" class="headerlink" title="yml.nacos配置"></a>yml.nacos配置</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
     <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
-      <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span></code></pre>
+      <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="nacos集群"><a href="#nacos集群" class="headerlink" title="nacos集群"></a>nacos集群</h4><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<h4 id="nacos集群"><a href="#nacos集群" class="headerlink" title="nacos集群"></a>nacos集群</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
     <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
       <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span>
       <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
-        <span class="token key atrule">cluster-name</span><span class="token punctuation">:</span> HZ <span class="token comment"># 集群名称</span></code></pre>
-<h4 id="负载均衡规则"><a href="#负载均衡规则" class="headerlink" title="负载均衡规则"></a>负载均衡规则</h4><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">userservice</span><span class="token punctuation">:</span>
+        <span class="token key atrule">cluster-name</span><span class="token punctuation">:</span> HZ <span class="token comment"># 集群名称</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="负载均衡规则"><a href="#负载均衡规则" class="headerlink" title="负载均衡规则"></a>负载均衡规则</h4><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">userservice</span><span class="token punctuation">:</span>
   <span class="token key atrule">ribbon</span><span class="token punctuation">:</span>
     <span class="token key atrule">NFLoadBalancerRuleClassName</span><span class="token punctuation">:</span> com.alibaba.cloud.nacos.ribbon.NacosRule <span class="token comment"># 负载均衡规则 </span>
 ```        
@@ -407,9 +407,9 @@
 &lt;dependency<span class="token punctuation">></span>
     &lt;groupId<span class="token punctuation">></span>com.alibaba.cloud&lt;/groupId<span class="token punctuation">></span>
     &lt;artifactId<span class="token punctuation">></span>spring<span class="token punctuation">-</span>cloud<span class="token punctuation">-</span>starter<span class="token punctuation">-</span>alibaba<span class="token punctuation">-</span>nacos<span class="token punctuation">-</span>config&lt;/artifactId<span class="token punctuation">></span>
-&lt;/dependency<span class="token punctuation">></span></code></pre>
+&lt;/dependency<span class="token punctuation">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
-<li>创建bootstrap.yaml<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<li>创建bootstrap.yaml<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
     <span class="token key atrule">name</span><span class="token punctuation">:</span> userservice <span class="token comment"># 服务名称</span>
   <span class="token key atrule">profiles</span><span class="token punctuation">:</span>
@@ -418,7 +418,7 @@
     <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
       <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span> <span class="token comment"># Nacos地址</span>
       <span class="token key atrule">config</span><span class="token punctuation">:</span>
-        <span class="token key atrule">file-extension</span><span class="token punctuation">:</span> yaml <span class="token comment"># 文件后缀名</span></code></pre></li>
+        <span class="token key atrule">file-extension</span><span class="token punctuation">:</span> yaml <span class="token comment"># 文件后缀名</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 
                     </article>
@@ -428,7 +428,7 @@
                         <div class="col-lg-12">
                             <!-- title -->
                             <h5 class="trm-mb-40 trm-title-with-divider">
-                                Other Articles
+                                其他文章
                                 <span data-number="02"></span>
                             </h5>
                         </div>
@@ -514,9 +514,9 @@
         </span>
     </div>
     <div class="trm-label">
-        The blog has been lovely to run:
+        博客已萌萌哒运行:
         <span id="since" class="trm-accent-color"></span>
-        day
+        天
     </div>
 </footer>
 <script>

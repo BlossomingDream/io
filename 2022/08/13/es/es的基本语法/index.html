@@ -335,7 +335,7 @@
         <!-- action button -->
         <div class="text-center">
             <a href="mailto:haoyang_wei@126.com" class="trm-btn">
-                Contact Me
+                联系我
                 <i class="far fa-envelope"></i>
             </a>
         </div>
@@ -369,7 +369,7 @@
                     </div>
 
                     <article class="trm-card trm-publication">
-                        <h1 id="es的基本语法"><a href="#es的基本语法" class="headerlink" title="es的基本语法"></a>es的基本语法</h1><h2 id="索引库的CRUD"><a href="#索引库的CRUD" class="headerlink" title="索引库的CRUD"></a>索引库的CRUD</h2><h3 id="索引库的创建"><a href="#索引库的创建" class="headerlink" title="索引库的创建"></a>索引库的创建</h3><pre class="language-none"><code class="language-none">## 4.1.创建索引库
+                        <h1 id="es的基本语法"><a href="#es的基本语法" class="headerlink" title="es的基本语法"></a>es的基本语法</h1><h2 id="索引库的CRUD"><a href="#索引库的CRUD" class="headerlink" title="索引库的CRUD"></a>索引库的CRUD</h2><h3 id="索引库的创建"><a href="#索引库的创建" class="headerlink" title="索引库的创建"></a>索引库的创建</h3><pre class="line-numbers language-none"><code class="language-none">## 4.1.创建索引库
 
 ### 4.1.0 在Kibana中去创建索引库
 
@@ -388,10 +388,10 @@
 - 是否分词呢要看内容，内容如果是一个整体就无需分词，反之则要分词
 - 分词器，我们可以统一使用&#96;ik_max_word&#96;
 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><a><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/7.12/mapping-types.html">https://www.elastic.co/guide/en/elasticsearch/reference/7.12/mapping-types.html</a></a></p>
-<pre class="language-json" data-language="json"><code class="language-json">PUT /索引库的名字
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">PUT /索引库的名字
 <span class="token punctuation">&#123;</span>
   <span class="token property">"mappings"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token property">"properties"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
@@ -433,8 +433,8 @@
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre>
-<h3 id="索引库的删除"><a href="#索引库的删除" class="headerlink" title="索引库的删除"></a>索引库的删除</h3><pre class="language-json" data-language="json"><code class="language-json">DELETE /索引库的id</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="索引库的删除"><a href="#索引库的删除" class="headerlink" title="索引库的删除"></a>索引库的删除</h3><pre class="line-numbers language-json" data-language="json"><code class="language-json">DELETE /索引库的id<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="操作文档的语法"><a href="#操作文档的语法" class="headerlink" title="操作文档的语法"></a>操作文档的语法</h2><hr>
 <ul>
@@ -467,7 +467,7 @@
 </li>
 </ul>
 <hr>
-<h3 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h3><pre class="language-json" data-language="json"><code class="language-json">GET /indexName/_search
+<h3 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h3><pre class="line-numbers language-json" data-language="json"><code class="language-json">GET /indexName/_search
 <span class="token punctuation">&#123;</span>
   <span class="token property">"query"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token property">"查询类型"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
@@ -576,9 +576,9 @@ GET /hotel/_search
       <span class="token punctuation">]</span>
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="设置高亮"><a href="#设置高亮" class="headerlink" title="设置高亮"></a>设置高亮</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// - 第一步：从结果中获取source。hit.getSourceAsString()，这部分是非高亮结果，json字符串。还需要反序列为HotelDoc对象</span>
+<h3 id="设置高亮"><a href="#设置高亮" class="headerlink" title="设置高亮"></a>设置高亮</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// - 第一步：从结果中获取source。hit.getSourceAsString()，这部分是非高亮结果，json字符串。还需要反序列为HotelDoc对象</span>
 <span class="token comment">// - 第二步：获取高亮结果。hit.getHighlightFields()，返回值是一个Map，key是高亮字段名称，值是HighlightField对象，代表高亮值</span>
 <span class="token comment">// - 第三步：从map中根据高亮字段名称，获取高亮字段值对象HighlightField</span>
 <span class="token comment">// - 第四步：从HighlightField中获取Fragments，并且转为字符串。这部分就是真正的高亮字符串了</span>
@@ -628,9 +628,9 @@ GET /hotel/_search
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"hotelDoc = "</span> <span class="token operator">+</span> hotelDoc<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="一些创建好的索引库"><a href="#一些创建好的索引库" class="headerlink" title="一些创建好的索引库"></a>一些创建好的索引库</h2><pre class="language-json" data-language="json"><code class="language-json">#创建item索引库
+<h2 id="一些创建好的索引库"><a href="#一些创建好的索引库" class="headerlink" title="一些创建好的索引库"></a>一些创建好的索引库</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json">#创建item索引库
 PUT /item
 <span class="token punctuation">&#123;</span>
    <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
@@ -836,7 +836,7 @@ PUT /hotel
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 
                     </article>
@@ -846,7 +846,7 @@ PUT /hotel
                         <div class="col-lg-12">
                             <!-- title -->
                             <h5 class="trm-mb-40 trm-title-with-divider">
-                                Other Articles
+                                其他文章
                                 <span data-number="02"></span>
                             </h5>
                         </div>
@@ -892,7 +892,7 @@ PUT /hotel
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
                 <a href=" #.">
-                    unclassified
+                    未分类
                 </a>
             </div>
             <h5>
@@ -932,9 +932,9 @@ PUT /hotel
         </span>
     </div>
     <div class="trm-label">
-        The blog has been lovely to run:
+        博客已萌萌哒运行:
         <span id="since" class="trm-accent-color"></span>
-        day
+        天
     </div>
 </footer>
 <script>

@@ -335,7 +335,7 @@
         <!-- action button -->
         <div class="text-center">
             <a href="mailto:haoyang_wei@126.com" class="trm-btn">
-                Contact Me
+                联系我
                 <i class="far fa-envelope"></i>
             </a>
         </div>
@@ -382,21 +382,21 @@
 <li>基于注解的监听器模式，异步接收消息</li>
 <li>封装了RabbitTemplate工具，用于发送消息</li>
 </ul>
-<h2 id="1-引入amqp依赖"><a href="#1-引入amqp依赖" class="headerlink" title="1.引入amqp依赖"></a>1.引入amqp依赖</h2><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--AMQP依赖，包含RabbitMQ--></span>
+<h2 id="1-引入amqp依赖"><a href="#1-引入amqp依赖" class="headerlink" title="1.引入amqp依赖"></a>1.引入amqp依赖</h2><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--AMQP依赖，包含RabbitMQ--></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-amqp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="2-yml配置amqp"><a href="#2-yml配置amqp" class="headerlink" title="2.yml配置amqp"></a>2.yml配置amqp</h2><p><code>生产者消费者都需要进行配置</code></p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
     <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.150.101 <span class="token comment"># 主机名</span>
     <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">5672</span> <span class="token comment"># 端口</span>
     <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> / <span class="token comment"># 虚拟主机</span>
     <span class="token key atrule">username</span><span class="token punctuation">:</span> itcast <span class="token comment"># 用户名</span>
-    <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123321</span> <span class="token comment"># 密码</span></code></pre>
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123321</span> <span class="token comment"># 密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="3-增加常量类"><a href="#3-增加常量类" class="headerlink" title="3.增加常量类"></a>3.增加常量类</h2><p><code>生产者消费者模块中需要引入这个模块对应的依赖</code></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MqConstant</span> <span class="token punctuation">&#123;</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MqConstant</span> <span class="token punctuation">&#123;</span>
 
     <span class="token comment">/**
      * 定义交换机
@@ -444,9 +444,9 @@
         <span class="token comment">// 2.RoutingKey : 路由key，自己定义，如果简单方式，那么就是队列名称</span>
         <span class="token comment">// 3.消息内容 ：Object，一般选择 json</span>
         rabbitTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>SIMPLE_QUEUE_NAME<span class="token punctuation">,</span> 
-        message<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+        message<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="5-接收消息"><a href="#5-接收消息" class="headerlink" title="5.接收消息"></a>5.接收消息</h2><pre class="language-java" data-language="java"><code class="language-java">    <span class="token comment">/**
+<h2 id="5-接收消息"><a href="#5-接收消息" class="headerlink" title="5.接收消息"></a>5.接收消息</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">    <span class="token comment">/**
      * @RabbitListener : 表示监听作用
      *      queues ：队列的名称，是一个数组
      * @param message 消息内容
@@ -505,19 +505,19 @@
     <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listenTopicQueue1</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"listenTopicQueue1 --> message:&#123;&#125;"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span></code></pre>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="3-消息序列化"><a href="#3-消息序列化" class="headerlink" title="3.消息序列化"></a>3.消息序列化</h1><ul>
 <li><code>JDK序列化方式并不合适。我们希望消息体的体积更小、可读性更高，因此可以使用JSON方式来做序列化和反序列化。</code></li>
 </ul>
 <h2 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h2><ul>
-<li><code>在publisher和consumer两个服务都要进行配置</code><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+<li><code>在publisher和consumer两个服务都要进行配置</code><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.fasterxml.jackson.dataformat<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jackson-dataformat-xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.9.10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre></li>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<h2 id="2-配置消息转换器"><a href="#2-配置消息转换器" class="headerlink" title="2.配置消息转换器"></a>2.配置消息转换器</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+<h2 id="2-配置消息转换器"><a href="#2-配置消息转换器" class="headerlink" title="2.配置消息转换器"></a>2.配置消息转换器</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
  * 消息转换器配置类
  *
  * @Name MessageConverterConfig
@@ -532,7 +532,7 @@
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonMessageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                     </article>
 
                     <!-- blog -->
@@ -540,7 +540,7 @@
                         <div class="col-lg-12">
                             <!-- title -->
                             <h5 class="trm-mb-40 trm-title-with-divider">
-                                Other Articles
+                                其他文章
                                 <span data-number="02"></span>
                             </h5>
                         </div>
@@ -626,9 +626,9 @@
         </span>
     </div>
     <div class="trm-label">
-        The blog has been lovely to run:
+        博客已萌萌哒运行:
         <span id="since" class="trm-accent-color"></span>
-        day
+        天
     </div>
 </footer>
 <script>
