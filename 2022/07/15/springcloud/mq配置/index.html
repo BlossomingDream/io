@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="keywords" content="">
+<meta name="description" content="消息队列Rabbit-MQ的配置 publisher：生产者 consumer：消费者 exchange：交换机，负责消息路由 queue：队列，存储消息 virtualHost：虚拟主机，隔离不同租户的exchange、queue、消息的隔离  SpringAMQP https:&#x2F;&#x2F;spring.io&#x2F;projects&#x2F;spring-amqp 自动声明队列、交换机及其绑定关系 基于注解的监听器模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="过滤器-拦截器-网关">
+<meta property="og:url" content="https://blossomingdream.github.io/io/2022/07/15/springcloud/mq%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="消息队列Rabbit-MQ的配置 publisher：生产者 consumer：消费者 exchange：交换机，负责消息路由 queue：队列，存储消息 virtualHost：虚拟主机，隔离不同租户的exchange、queue、消息的隔离  SpringAMQP https:&#x2F;&#x2F;spring.io&#x2F;projects&#x2F;spring-amqp 自动声明队列、交换机及其绑定关系 基于注解的监听器模">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-15T06:37:22.000Z">
+<meta property="article:modified_time" content="2022-08-13T15:37:20.168Z">
+<meta property="article:author" content="浩洋">
+<meta property="article:tag" content="消息队列Rabbit-MQ的配置">
+<meta name="twitter:card" content="summary">
+
+    <meta name="description" content="大聪明程序员">
+
+<title>
+    过滤器-拦截器-网关
+</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/io/img/iocn.png?v=1.0.2">
+
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/io/img/iocn.png?v=1.0.2">
+
+
+
+<link rel="preload" href="//at.alicdn.com/t/font_1518765_bkgx3wku6h4.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1518765_bkgx3wku6h4.css">
+
+
+<link rel="stylesheet" href="/io/css/plugins/bootstrap.min.css">
+<link rel="stylesheet" href="/io/css/plugins/locomotive-scroll.css">
+<link rel="stylesheet" href="/io/css/plugins/swiper.min.css">
+<link rel="stylesheet" href="/io/css/plugins/fancybox.min.css">
+<link rel="stylesheet" href="/io/css/plugins/font-awesome.min.css">
+
+
+<!-- variable -->
+<script>window.TYPED_TEXT=[
+  "miss you"
+]</script>
+<script>window.FAVICON={
+  "icon16": "/img/iocn.png",
+  "icon32": "/img/iocn.png",
+  "appleTouchIcon": null,
+  "webmanifest": null,
+  "visibilitychange": true,
+  "hidden": null,
+  "showText": "我在这!",
+  "hideText": "我在哪?"
+}</script>
+<script>window.HTMEM_VERSION='1.0.2'</script>
+<link data-theme-type="style-light" rel="stylesheet" href="/io/css/style-light.css?v=1.0.2" id="trm-switch-style">
+<link data-theme-type="style-dark" rel="stylesheet" href="/io/css/style-dark.css?v=1.0.2" id="trm-switch-style">
+
+<!-- theme css -->
+<script>
+    let themeMode = localStorage.getItem('theme-mode') === 'style-dark' ? 'style-light' : 'style-dark';
+    let linkdom = document.querySelector('[data-theme-type='+themeMode+']');
+    if(linkdom) linkdom.remove();
+</script>
+
+<!-- Site Analytics -->
+
+     
+
+    
+
+    
+ 
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation"><i class="far fa-sun"></i>
+        <div class="trm-horizon"></div>
+        <i class="far fa-moon"></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+            <!-- top bar -->
+            <div class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target="#content" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+			<a href="/io/" class="trm-logo-frame trm-anima-link">
+				<img src="/io/img/iocn.png" alt="logo">
+				<div class="trm-logo-text">
+					魏
+					<span>浩洋</span>
+				</div>
+			</a>
+			<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+
+			<!-- menu -->
+			<div class="trm-menu">
+				<nav>
+					<ul>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/io/">
+								首页
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/io/archives/">
+								归档
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/io/links/">
+								友链
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/io/about/">
+								关于
+							</a>
+							
+						</li>
+						
+					</ul>
+				</nav>
+			</div>
+			<!-- menu end -->
+
+			<!-- mode switcher place -->
+			<div class="trm-mode-switcher-place"></div>
+			<!-- mode switcher place end -->
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</div>
+            <!-- top bar end -->
+
+            <!-- body -->
+            <div class="trm-content-start">
+
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    <!-- banner cover -->
+    <img src="https://pic1.zhimg.com/v2-b3c2c6745b9421a13a3c4706b19223b3_r.jpg?source=1940ef5c" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3">
+    <!-- banner cover end -->
+
+    <!-- banner slideshow cover-->
+    <!-- <div class="swiper-container trm-slideshow" data-scroll data-scroll-direction="vertical" data-scroll-speed="-4">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/img/blog/b1.jpg" alt="banner" class="trm-banner-cover" data-swiper-parallax-y="-200" data-swiper-parallax-scale="1.2"></div>
+            <div class="swiper-slide"><img src="/img/blog/b2.jpg" alt="banner" class="trm-banner-cover" data-swiper-parallax-y="-200" data-swiper-parallax-scale="1.2"></div>
+            <div class="swiper-slide"><img src="/img/blog/b3.jpg" alt="banner" class="trm-banner-cover" data-swiper-parallax-y="-200" data-swiper-parallax-scale="1.2"></div>
+        </div>
+    </div> -->
+    <!-- banner slideshow cover end -->
+
+    <!-- banner video cover -->
+    <!-- <video autoplay="autoplay" loop muted playsinline webkit-playinginline class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-4">
+        <source src="img/banner.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+        <source src="img/banner.webm" type='video/webm; codecs="vp8, vorbis"'>
+        <source src="img/banner.ogg" type='video/ogg; codecs="theora, vorbis"'>
+        Your browser does not support HTML5 video.
+    </video> -->
+    <!-- banner video cover end -->
+
+    <!-- banner cover end -->
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            过滤器-拦截器-网关
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/io/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2022
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <!-- main card -->
+                <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target="#content" data-scroll-offset="60">
+        <!-- card header -->
+        <div class="trm-mc-header">
+            <div class="trm-avatar-frame trm-mb-20"><img class="trm-avatar" src="/io/img/head.jpg" alt="Avatar"> </div>
+            <h5 class="trm-name trm-mb-15">
+                还没雾散 还没花开
+            </h5>
+            <div class="trm-label">
+                I
+                <span class="trm-typed-text">
+                    <!-- Words for theme.user.typedText -->
+                </span>
+            </div>
+        </div>
+        <!-- card header end -->
+        <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+        <!-- sidebar social -->
+        <div class="trm-social">
+            
+                <a href="https://github.com" rel="nofollow" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            
+                <a href="https://gitee.com" rel="nofollow" target="_blank">
+                    <i class="iconfont cg-gitee"></i>
+                </a>
+            
+                <a href="https://weibo.com/" rel="nofollow" target="_blank">
+                    <i class="iconfont cg-weibo"></i>
+                </a>
+            
+        </div>
+        <!-- sidebar social end -->
+        <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+        <!-- info -->
+        <ul class="trm-table trm-mb-20">
+            
+                <li>
+                    <div class="trm-label">
+                        Residence:
+                    </div>
+                    <div class="trm-label trm-label-light">
+                        逍遥观
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="trm-label">
+                        City:
+                    </div>
+                    <div class="trm-label trm-label-light">
+                        郑州
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="trm-label">
+                        Age:
+                    </div>
+                    <div class="trm-label trm-label-light">
+                        24
+                    </div>
+                </li>
+            
+        </ul>
+        
+        <!-- info end -->
+        <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+        <!-- action button -->
+        <div class="text-center">
+            <a href="mailto:haoyang_wei@126.com" class="trm-btn">
+                Contact Me
+                <i class="far fa-envelope"></i>
+            </a>
+        </div>
+        <!-- action button end -->
+        
+    </div>
+</div>
+                <!-- main card end -->
+            </div>
+            <div class="col-lg-8">
+                <!-- content -->
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+                    
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="trm-card trm-label trm-label-light text-center"><i class="far fa-calendar-alt trm-icon"></i><br>
+                                07/15
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="trm-card trm-label trm-label-light text-center"><i class="far fa-clock trm-icon"></i><br>
+                                02:37
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="trm-card trm-label trm-label-light text-center"><i class="far fa-user trm-icon"></i><br>
+                                还没雾散 还没花开
+                            </div>
+                        </div>
+                    </div>
+
+                    <article class="trm-card trm-publication">
+                        <h1 id="消息队列Rabbit-MQ的配置"><a href="#消息队列Rabbit-MQ的配置" class="headerlink" title="消息队列Rabbit-MQ的配置"></a>消息队列Rabbit-MQ的配置</h1><ul>
+<li>publisher：生产者</li>
+<li>consumer：消费者</li>
+<li>exchange：交换机，负责消息路由</li>
+<li>queue：队列，存储消息</li>
+<li>virtualHost：虚拟主机，隔离不同租户的exchange、queue、消息的隔离</li>
+</ul>
+<h1 id="SpringAMQP"><a href="#SpringAMQP" class="headerlink" title="SpringAMQP"></a>SpringAMQP</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-amqp">https://spring.io/projects/spring-amqp</a></li>
+<li>自动声明队列、交换机及其绑定关系</li>
+<li>基于注解的监听器模式，异步接收消息</li>
+<li>封装了RabbitTemplate工具，用于发送消息</li>
+</ul>
+<h2 id="1-引入amqp依赖"><a href="#1-引入amqp依赖" class="headerlink" title="1.引入amqp依赖"></a>1.引入amqp依赖</h2><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--AMQP依赖，包含RabbitMQ--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-amqp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="2-yml配置amqp"><a href="#2-yml配置amqp" class="headerlink" title="2.yml配置amqp"></a>2.yml配置amqp</h2><p><code>生产者消费者都需要进行配置</code></p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
+    <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.150.101 <span class="token comment"># 主机名</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">5672</span> <span class="token comment"># 端口</span>
+    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> / <span class="token comment"># 虚拟主机</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> itcast <span class="token comment"># 用户名</span>
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123321</span> <span class="token comment"># 密码</span></code></pre>
+<h2 id="3-增加常量类"><a href="#3-增加常量类" class="headerlink" title="3.增加常量类"></a>3.增加常量类</h2><p><code>生产者消费者模块中需要引入这个模块对应的依赖</code></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MqConstant</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">/**
+     * 定义交换机
+     */</span>
+    <span class="token class-name">String</span> ITEM_DIRECT_EXCHANGE <span class="token operator">=</span> <span class="token string">"item.exchange"</span><span class="token punctuation">;</span>
+
+
+    <span class="token comment">/**
+     *  定义添加队列
+     */</span>
+    <span class="token class-name">String</span> ITEM_ADD_QUEUE <span class="token operator">=</span> <span class="token string">"item.add.queue"</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 定义删除队列
+     */</span>
+    <span class="token class-name">String</span> ITEM_DEL_QUEUE <span class="token operator">=</span> <span class="token string">"item.del.queue"</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 定义修改库存队列
+     */</span>
+    <span class="token class-name">String</span> ITEM_UPDATE_QUEUE <span class="token operator">=</span> <span class="token string">"item.update.queue"</span> <span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * 定义添加key
+     */</span>
+    <span class="token class-name">String</span> ITEM_KEY_ADD <span class="token operator">=</span> <span class="token string">"item.key.add"</span><span class="token punctuation">;</span>
+    <span class="token comment">/**
+     * 定义删除key
+     */</span>
+    <span class="token class-name">String</span> ITEM_KEY_DEL <span class="token operator">=</span> <span class="token string">"item.key.del"</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//topic相关的</span>
+    <span class="token class-name">String</span> TOPIC_EXCHANGE <span class="token operator">=</span> <span class="token string">"itcast.topic"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> TOPIC_QUEUE1 <span class="token operator">=</span> <span class="token string">"topic.queue1"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> TOPIC_QUEUE2 <span class="token operator">=</span> <span class="token string">"topic.queue2"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> ROUTING_PREFIX_CHINA <span class="token operator">=</span> <span class="token string">"china.#"</span><span class="token punctuation">;</span>
+    <span class="token class-name">String</span> ROUTING_SUFFIX_NEWS <span class="token operator">=</span> <span class="token string">"#.news"</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+```    
+## <span class="token number">4.</span>发送消息
+```json
+        <span class="token comment">//发送消息</span>
+        <span class="token comment">// 1.exchange : 交换机名称，如果简单方式，那么就是""</span>
+        <span class="token comment">// 2.RoutingKey : 路由key，自己定义，如果简单方式，那么就是队列名称</span>
+        <span class="token comment">// 3.消息内容 ：Object，一般选择 json</span>
+        rabbitTemplate<span class="token punctuation">.</span><span class="token function">convertAndSend</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>SIMPLE_QUEUE_NAME<span class="token punctuation">,</span> 
+        message<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h2 id="5-接收消息"><a href="#5-接收消息" class="headerlink" title="5.接收消息"></a>5.接收消息</h2><pre class="language-java" data-language="java"><code class="language-java">    <span class="token comment">/**
+     * @RabbitListener : 表示监听作用
+     *      queues ：队列的名称，是一个数组
+     * @param message 消息内容
+     */</span>
+    <span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>queues <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token class-name">MqConstant</span><span class="token punctuation">.</span>SIMPLE_QUEUE_NAME<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listenSimpleQueue</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        log<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">"message:&#123;&#125;"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+```    
+# 五种消息模式
+<span class="token operator">-</span> <span class="token class-name">Publisher</span>：生产者，也就是要发送消息的程序，但是不再发送到队列中，而是发给<span class="token class-name">X</span>（交换机）
+<span class="token operator">-</span> <span class="token class-name">Exchange</span>：交换机，图中的<span class="token class-name">X</span>。一方面，接收生产者发送的消息。另一方面，知道如何处理消息，例如递交给某个特别队列、递交给所有队列、或是将消息丢弃。到底如何操作，取决于<span class="token class-name">Exchange</span>的类型。<span class="token class-name">Exchange</span>有以下<span class="token number">3</span>种类型：
+  <span class="token operator">-</span> <span class="token class-name">Fanout</span>：广播，将消息交给所有绑定到交换机的队列
+  <span class="token operator">-</span> <span class="token class-name">Direct</span>：定向，把消息交给符合指定routing key 的队列
+  <span class="token operator">-</span> <span class="token class-name">Topic</span>：通配符，把消息交给符合routing pattern（路由模式） 的队列
+<span class="token operator">-</span> <span class="token class-name">Consumer</span>：消费者，与以前一样，订阅队列，没有变化
+<span class="token operator">-</span> <span class="token class-name">Queue</span>：消息队列也与以前一样，接收消息、缓存消息。
+
+
+<span class="token operator">-</span> <span class="token class-name">Topic</span>交换机接收的消息<span class="token class-name">RoutingKey</span>必须是多个单词，以 `<span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">.</span>*<span class="token operator">*</span>` 分割
+<span class="token operator">-</span> <span class="token class-name">Topic</span>交换机与队列绑定时的bindingKey可以指定通配符
+<span class="token operator">-</span> `#`：代表<span class="token number">1</span>个或多个词
+<span class="token operator">-</span> `<span class="token operator">*</span>`：代表<span class="token number">1</span>个词
+
+
+
+# 基于注解声明队列和交换机
+```java
+
+<span class="token comment">/*
+- @Binding：绑定关系
+- @Queue：声明队列
+- @Exchange：交换机
+- 属性key：routingkey
+*/</span>
+
+<span class="token comment">//============direct模式=====================</span>
+<span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>bindings <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@QueueBinding</span><span class="token punctuation">(</span>
+            value <span class="token operator">=</span> <span class="token annotation punctuation">@Queue</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>DIRECT_QUEUE1<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            exchange <span class="token operator">=</span> <span class="token annotation punctuation">@Exchange</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>DIRECT_EXCHANGE<span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ExchangeTypes</span><span class="token punctuation">.</span>DIRECT<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            key <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token class-name">MqConstant</span><span class="token punctuation">.</span>ROUTING_BLUE<span class="token punctuation">,</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>ROUTING_RED<span class="token punctuation">&#125;</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listenDirectQueue1</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
+    log<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">"listenDirectQueue1 --> message:&#123;&#125;"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+  <span class="token comment">//topic-----------------</span>
+    <span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>bindings <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+            <span class="token annotation punctuation">@QueueBinding</span><span class="token punctuation">(</span>
+                    value <span class="token operator">=</span> <span class="token annotation punctuation">@Queue</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>TOPIC_QUEUE1<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    exchange <span class="token operator">=</span> <span class="token annotation punctuation">@Exchange</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>TOPIC_EXCHANGE<span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ExchangeTypes</span><span class="token punctuation">.</span>TOPIC<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    key <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token class-name">MqConstant</span><span class="token punctuation">.</span>ROUTING_PREFIX_CHINA<span class="token punctuation">&#125;</span>
+            <span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listenTopicQueue1</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"listenTopicQueue1 --> message:&#123;&#125;"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span></code></pre>
+
+<h1 id="3-消息序列化"><a href="#3-消息序列化" class="headerlink" title="3.消息序列化"></a>3.消息序列化</h1><ul>
+<li><code>JDK序列化方式并不合适。我们希望消息体的体积更小、可读性更高，因此可以使用JSON方式来做序列化和反序列化。</code></li>
+</ul>
+<h2 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h2><ul>
+<li><code>在publisher和consumer两个服务都要进行配置</code><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.fasterxml.jackson.dataformat<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jackson-dataformat-xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.9.10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre></li>
+</ul>
+<h2 id="2-配置消息转换器"><a href="#2-配置消息转换器" class="headerlink" title="2.配置消息转换器"></a>2.配置消息转换器</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * 消息转换器配置类
+ *
+ * @Name MessageConverterConfig
+ * @Author admin
+ * @Date 2022-08-03 17:50
+ */</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MessageConverterConfig</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">MessageConverter</span> <span class="token function">messageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonMessageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span></code></pre>
+                    </article>
+
+                    <!-- blog -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- title -->
+                            <h5 class="trm-mb-40 trm-title-with-divider">
+                                Other Articles
+                                <span data-number="02"></span>
+                            </h5>
+                        </div>
+                        
+                            <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/io/2022/07/15/springcloud/feign%E9%85%8D%E7%BD%AE/" class="trm-cover-frame trm-anima-link">
+            <img src="/io/img/block.jpg" alt="cover">
+        </a>
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /io/categories/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E7%B1%BB/">
+                    配置代码类
+                </a>
+            </div>
+            <h5>
+                <a href="/io/2022/07/15/springcloud/feign%E9%85%8D%E7%BD%AE/" class="trm-anima-link">
+                    过滤器-拦截器-网关
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>
+                    07/15
+                </li>
+                <li>
+                    02:37
+                </li>
+                <li>
+                    416
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+                        
+                        
+                            <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/io/2022/06/23/springboot%E9%85%8D%E7%BD%AE/springBoot%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" class="trm-cover-frame trm-anima-link">
+            <img src="/io/img/block.jpg" alt="cover">
+        </a>
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /io/categories/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E7%B1%BB/">
+                    配置代码类
+                </a>
+            </div>
+            <h5>
+                <a href="/io/2022/06/23/springboot%E9%85%8D%E7%BD%AE/springBoot%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/" class="trm-anima-link">
+                    springboot的一些配置
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>
+                    06/23
+                </li>
+                <li>
+                    10:45
+                </li>
+                <li>
+                    935
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+                        
+                    </div>
+                    <!-- blog end -->
+
+                    
+
+                    <div class="trm-divider trm-mb-40"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+    <div class="trm-label">
+        ©  2019- 2022 ·
+        <span class="trm-accent-color">
+            还没雾散 还没花开
+        </span>
+    </div>
+    <div class="trm-label">
+        The blog has been lovely to run:
+        <span id="since" class="trm-accent-color"></span>
+        day
+    </div>
+</footer>
+<script>
+    function show_date_time () {
+        BirthDay = new Date("07/22/2022 17:00:00");
+        today = new Date();
+        timeold = (today.getTime() - BirthDay.getTime());
+        msPerDay = 24 * 60 * 60 * 1000
+        day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+                    <!-- footer end -->
+                </div>
+                <!-- content end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+  
+  
+            <!-- body end -->
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+      <!-- mode switcher -->
+      <div class="trm-hidden-switcher">
+        <div class="trm-mode-switcher"><i class="far fa-sun"></i>
+          <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+          <label class="trm-swich" for="trm-swich"></label>
+          <i class="far fa-moon"></i>
+        </div>
+      </div>
+      <!-- mode switcher end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  
+<script src="/io/js/plugins/jquery.min.js"></script>
+<script src="/io/js/plugins/swup.min.js"></script>
+<script src="/io/js/plugins/locomotive-scroll.js"></script>
+<script src="/io/js/plugins/typing.js"></script>
+<script src="/io/js/plugins/fancybox.min.js"></script>
+<script src="/io/js/plugins/swiper.min.js"></script>
+
+
+<!-- 评论插件 -->
+
+
+<!-- Service Worker -->
+
+
+<script src="/io/js/main.js?v=1.0.2"></script>
+
+
+</body>
+
+</html>
