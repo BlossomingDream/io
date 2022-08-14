@@ -335,7 +335,7 @@
         <!-- action button -->
         <div class="text-center">
             <a href="mailto:haoyang_wei@126.com" class="trm-btn">
-                联系我
+                Contact Me
                 <i class="far fa-envelope"></i>
             </a>
         </div>
@@ -382,76 +382,14 @@
 <li>基于注解的监听器模式，异步接收消息</li>
 <li>封装了RabbitTemplate工具，用于发送消息</li>
 </ul>
-<h2 id="1-引入amqp依赖"><a href="#1-引入amqp依赖" class="headerlink" title="1.引入amqp依赖"></a>1.引入amqp依赖</h2><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--AMQP依赖，包含RabbitMQ--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-amqp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="1-引入amqp依赖"><a href="#1-引入amqp依赖" class="headerlink" title="1.引入amqp依赖"></a>1.引入amqp依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--AMQP依赖，包含RabbitMQ--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="2-yml配置amqp"><a href="#2-yml配置amqp" class="headerlink" title="2.yml配置amqp"></a>2.yml配置amqp</h2><p><code>生产者消费者都需要进行配置</code></p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
-  <span class="token key atrule">rabbitmq</span><span class="token punctuation">:</span>
-    <span class="token key atrule">host</span><span class="token punctuation">:</span> 192.168.150.101 <span class="token comment"># 主机名</span>
-    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">5672</span> <span class="token comment"># 端口</span>
-    <span class="token key atrule">virtual-host</span><span class="token punctuation">:</span> / <span class="token comment"># 虚拟主机</span>
-    <span class="token key atrule">username</span><span class="token punctuation">:</span> itcast <span class="token comment"># 用户名</span>
-    <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123321</span> <span class="token comment"># 密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.150</span><span class="number">.101</span> <span class="comment"># 主机名</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span> <span class="comment"># 端口</span></span><br><span class="line">    <span class="attr">virtual-host:</span> <span class="string">/</span> <span class="comment"># 虚拟主机</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">itcast</span> <span class="comment"># 用户名</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123321</span> <span class="comment"># 密码</span></span><br></pre></td></tr></table></figure>
 <h2 id="3-增加常量类"><a href="#3-增加常量类" class="headerlink" title="3.增加常量类"></a>3.增加常量类</h2><p><code>生产者消费者模块中需要引入这个模块对应的依赖</code></p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MqConstant</span> <span class="token punctuation">&#123;</span>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">MqConstant</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义交换机</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">ITEM_DIRECT_EXCHANGE</span> <span class="operator">=</span> <span class="string">&quot;item.exchange&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  定义添加队列</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">ITEM_ADD_QUEUE</span> <span class="operator">=</span> <span class="string">&quot;item.add.queue&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义删除队列</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">ITEM_DEL_QUEUE</span> <span class="operator">=</span> <span class="string">&quot;item.del.queue&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义修改库存队列</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">ITEM_UPDATE_QUEUE</span> <span class="operator">=</span> <span class="string">&quot;item.update.queue&quot;</span> ;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义添加key</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">ITEM_KEY_ADD</span> <span class="operator">=</span> <span class="string">&quot;item.key.add&quot;</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义删除key</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">ITEM_KEY_DEL</span> <span class="operator">=</span> <span class="string">&quot;item.key.del&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//topic相关的</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">TOPIC_EXCHANGE</span> <span class="operator">=</span> <span class="string">&quot;itcast.topic&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">TOPIC_QUEUE1</span> <span class="operator">=</span> <span class="string">&quot;topic.queue1&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">TOPIC_QUEUE2</span> <span class="operator">=</span> <span class="string">&quot;topic.queue2&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">ROUTING_PREFIX_CHINA</span> <span class="operator">=</span> <span class="string">&quot;china.#&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">ROUTING_SUFFIX_NEWS</span> <span class="operator">=</span> <span class="string">&quot;#.news&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-发送消息"><a href="#4-发送消息" class="headerlink" title="4.发送消息"></a>4.发送消息</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发送消息</span></span><br><span class="line"><span class="comment">// 1.exchange : 交换机名称，如果简单方式，那么就是&quot;&quot;</span></span><br><span class="line"><span class="comment">// 2.RoutingKey : 路由key，自己定义，如果简单方式，那么就是队列名称</span></span><br><span class="line"><span class="comment">// 3.消息内容 ：Object，一般选择 json</span></span><br><span class="line">rabbitTemplate.convertAndSend(<span class="string">&quot;&quot;</span><span class="punctuation">,</span> MqConstant.SIMPLE_QUEUE_NAME<span class="punctuation">,</span> </span><br><span class="line">message);</span><br></pre></td></tr></table></figure>
 
-    <span class="token comment">/**
-     * 定义交换机
-     */</span>
-    <span class="token class-name">String</span> ITEM_DIRECT_EXCHANGE <span class="token operator">=</span> <span class="token string">"item.exchange"</span><span class="token punctuation">;</span>
-
-
-    <span class="token comment">/**
-     *  定义添加队列
-     */</span>
-    <span class="token class-name">String</span> ITEM_ADD_QUEUE <span class="token operator">=</span> <span class="token string">"item.add.queue"</span><span class="token punctuation">;</span>
-
-    <span class="token comment">/**
-     * 定义删除队列
-     */</span>
-    <span class="token class-name">String</span> ITEM_DEL_QUEUE <span class="token operator">=</span> <span class="token string">"item.del.queue"</span><span class="token punctuation">;</span>
-
-    <span class="token comment">/**
-     * 定义修改库存队列
-     */</span>
-    <span class="token class-name">String</span> ITEM_UPDATE_QUEUE <span class="token operator">=</span> <span class="token string">"item.update.queue"</span> <span class="token punctuation">;</span>
-
-    <span class="token comment">/**
-     * 定义添加key
-     */</span>
-    <span class="token class-name">String</span> ITEM_KEY_ADD <span class="token operator">=</span> <span class="token string">"item.key.add"</span><span class="token punctuation">;</span>
-    <span class="token comment">/**
-     * 定义删除key
-     */</span>
-    <span class="token class-name">String</span> ITEM_KEY_DEL <span class="token operator">=</span> <span class="token string">"item.key.del"</span><span class="token punctuation">;</span>
-
-    <span class="token comment">//topic相关的</span>
-    <span class="token class-name">String</span> TOPIC_EXCHANGE <span class="token operator">=</span> <span class="token string">"itcast.topic"</span><span class="token punctuation">;</span>
-    <span class="token class-name">String</span> TOPIC_QUEUE1 <span class="token operator">=</span> <span class="token string">"topic.queue1"</span><span class="token punctuation">;</span>
-    <span class="token class-name">String</span> TOPIC_QUEUE2 <span class="token operator">=</span> <span class="token string">"topic.queue2"</span><span class="token punctuation">;</span>
-    <span class="token class-name">String</span> ROUTING_PREFIX_CHINA <span class="token operator">=</span> <span class="token string">"china.#"</span><span class="token punctuation">;</span>
-    <span class="token class-name">String</span> ROUTING_SUFFIX_NEWS <span class="token operator">=</span> <span class="token string">"#.news"</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="4-发送消息"><a href="#4-发送消息" class="headerlink" title="4.发送消息"></a>4.发送消息</h2><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">//发送消息</span>
-<span class="token comment">// 1.exchange : 交换机名称，如果简单方式，那么就是""</span>
-<span class="token comment">// 2.RoutingKey : 路由key，自己定义，如果简单方式，那么就是队列名称</span>
-<span class="token comment">// 3.消息内容 ：Object，一般选择 json</span>
-rabbitTemplate.convertAndSend(<span class="token string">""</span><span class="token punctuation">,</span> MqConstant.SIMPLE_QUEUE_NAME<span class="token punctuation">,</span> 
-message);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="5-接收消息"><a href="#5-接收消息" class="headerlink" title="5.接收消息"></a>5.接收消息</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
- * @RabbitListener : 表示监听作用
- *      queues ：队列的名称，是一个数组
- * @param message 消息内容
- */</span>
-<span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>queues <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token class-name">MqConstant</span><span class="token punctuation">.</span>SIMPLE_QUEUE_NAME<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listenSimpleQueue</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    log<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">"message:&#123;&#125;"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="5-接收消息"><a href="#5-接收消息" class="headerlink" title="5.接收消息"></a>5.接收消息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@RabbitListener</span> : 表示监听作用</span></span><br><span class="line"><span class="comment"> *      queues ：队列的名称，是一个数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> message 消息内容</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RabbitListener(queues = &#123;MqConstant.SIMPLE_QUEUE_NAME&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenSimpleQueue</span><span class="params">(String message)</span>&#123;</span><br><span class="line">    log.warn(<span class="string">&quot;message:&#123;&#125;&quot;</span>, message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="五种消息模式"><a href="#五种消息模式" class="headerlink" title="五种消息模式"></a>五种消息模式</h1><ul>
 <li><p>Publisher：生产者，也就是要发送消息的程序，但是不再发送到队列中，而是发给X（交换机）</p>
 </li>
@@ -475,64 +413,15 @@ message);<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 <li><p><code>*</code>：代表1个词</p>
 </li>
 </ul>
-<h1 id="基于注解声明队列和交换机"><a href="#基于注解声明队列和交换机" class="headerlink" title="基于注解声明队列和交换机"></a>基于注解声明队列和交换机</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java">
-<span class="token comment">/*
-- @Binding：绑定关系
-- @Queue：声明队列
-- @Exchange：交换机
-- 属性key：routingkey
-*/</span>
-
-<span class="token comment">//============direct模式=====================</span>
-<span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>bindings <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token annotation punctuation">@QueueBinding</span><span class="token punctuation">(</span>
-            value <span class="token operator">=</span> <span class="token annotation punctuation">@Queue</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>DIRECT_QUEUE1<span class="token punctuation">)</span><span class="token punctuation">,</span>
-            exchange <span class="token operator">=</span> <span class="token annotation punctuation">@Exchange</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>DIRECT_EXCHANGE<span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ExchangeTypes</span><span class="token punctuation">.</span>DIRECT<span class="token punctuation">)</span><span class="token punctuation">,</span>
-            key <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token class-name">MqConstant</span><span class="token punctuation">.</span>ROUTING_BLUE<span class="token punctuation">,</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>ROUTING_RED<span class="token punctuation">&#125;</span>
-    <span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listenDirectQueue1</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
-    log<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">"listenDirectQueue1 --> message:&#123;&#125;"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-  <span class="token comment">//topic-----------------</span>
-    <span class="token annotation punctuation">@RabbitListener</span><span class="token punctuation">(</span>bindings <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-            <span class="token annotation punctuation">@QueueBinding</span><span class="token punctuation">(</span>
-                    value <span class="token operator">=</span> <span class="token annotation punctuation">@Queue</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>TOPIC_QUEUE1<span class="token punctuation">)</span><span class="token punctuation">,</span>
-                    exchange <span class="token operator">=</span> <span class="token annotation punctuation">@Exchange</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token class-name">MqConstant</span><span class="token punctuation">.</span>TOPIC_EXCHANGE<span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">ExchangeTypes</span><span class="token punctuation">.</span>TOPIC<span class="token punctuation">)</span><span class="token punctuation">,</span>
-                    key <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token class-name">MqConstant</span><span class="token punctuation">.</span>ROUTING_PREFIX_CHINA<span class="token punctuation">&#125;</span>
-            <span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">listenTopicQueue1</span><span class="token punctuation">(</span><span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
-        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"listenTopicQueue1 --> message:&#123;&#125;"</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="基于注解声明队列和交换机"><a href="#基于注解声明队列和交换机" class="headerlink" title="基于注解声明队列和交换机"></a>基于注解声明队列和交换机</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">- @Binding：绑定关系</span></span><br><span class="line"><span class="comment">- @Queue：声明队列</span></span><br><span class="line"><span class="comment">- @Exchange：交换机</span></span><br><span class="line"><span class="comment">- 属性key：routingkey</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//============direct模式=====================</span></span><br><span class="line"><span class="meta">@RabbitListener(bindings = &#123;</span></span><br><span class="line"><span class="meta">    @QueueBinding(</span></span><br><span class="line"><span class="meta">            value = @Queue(name = MqConstant.DIRECT_QUEUE1),</span></span><br><span class="line"><span class="meta">            exchange = @Exchange(name = MqConstant.DIRECT_EXCHANGE, type = ExchangeTypes.DIRECT),</span></span><br><span class="line"><span class="meta">            key = &#123;MqConstant.ROUTING_BLUE, MqConstant.ROUTING_RED&#125;</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line"><span class="meta">&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenDirectQueue1</span><span class="params">(String message)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">    log.warn(<span class="string">&quot;listenDirectQueue1 --&gt; message:&#123;&#125;&quot;</span>, message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//topic-----------------</span></span><br><span class="line">    <span class="meta">@RabbitListener(bindings = &#123;</span></span><br><span class="line"><span class="meta">            @QueueBinding(</span></span><br><span class="line"><span class="meta">                    value = @Queue(name = MqConstant.TOPIC_QUEUE1),</span></span><br><span class="line"><span class="meta">                    exchange = @Exchange(name = MqConstant.TOPIC_EXCHANGE, type = ExchangeTypes.TOPIC),</span></span><br><span class="line"><span class="meta">                    key = &#123;MqConstant.ROUTING_PREFIX_CHINA&#125;</span></span><br><span class="line"><span class="meta">            )</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">listenTopicQueue1</span><span class="params">(String message)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        log.info(<span class="string">&quot;listenTopicQueue1 --&gt; message:&#123;&#125;&quot;</span>, message);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="3-消息序列化"><a href="#3-消息序列化" class="headerlink" title="3.消息序列化"></a>3.消息序列化</h1><ul>
 <li><code>JDK序列化方式并不合适。我们希望消息体的体积更小、可读性更高，因此可以使用JSON方式来做序列化和反序列化。</code></li>
 </ul>
 <h2 id="1-引入依赖"><a href="#1-引入依赖" class="headerlink" title="1.引入依赖"></a>1.引入依赖</h2><ul>
-<li><code>在publisher和consumer两个服务都要进行配置</code><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.fasterxml.jackson.dataformat<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jackson-dataformat-xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.9.10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><code>在publisher和consumer两个服务都要进行配置</code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.dataformat<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-dataformat-xml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="2-配置消息转换器"><a href="#2-配置消息转换器" class="headerlink" title="2.配置消息转换器"></a>2.配置消息转换器</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
- * 消息转换器配置类
- *
- * @Name MessageConverterConfig
- * @Author admin
- * @Date 2022-08-03 17:50
- */</span>
-<span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MessageConverterConfig</span> <span class="token punctuation">&#123;</span>
-
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> <span class="token class-name">MessageConverter</span> <span class="token function">messageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Jackson2JsonMessageConverter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="2-配置消息转换器"><a href="#2-配置消息转换器" class="headerlink" title="2.配置消息转换器"></a>2.配置消息转换器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 消息转换器配置类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Name</span> MessageConverterConfig</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> admin</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2022-08-03 17:50</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MessageConverterConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageConverter <span class="title function_">messageConverter</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Jackson2JsonMessageConverter</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                     </article>
 
                     <!-- blog -->
@@ -540,7 +429,7 @@ message);<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                         <div class="col-lg-12">
                             <!-- title -->
                             <h5 class="trm-mb-40 trm-title-with-divider">
-                                其他文章
+                                Other Articles
                                 <span data-number="02"></span>
                             </h5>
                         </div>
@@ -570,7 +459,7 @@ message);<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     02:37
                 </li>
                 <li>
-                    416
+                    457
                 </li>
             </ul>
         </div>
@@ -603,7 +492,7 @@ message);<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     10:45
                 </li>
                 <li>
-                    820
+                    935
                 </li>
             </ul>
         </div>
@@ -626,9 +515,9 @@ message);<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
         </span>
     </div>
     <div class="trm-label">
-        博客已萌萌哒运行:
+        The blog has been lovely to run:
         <span id="since" class="trm-accent-color"></span>
-        天
+        day
     </div>
 </footer>
 <script>
