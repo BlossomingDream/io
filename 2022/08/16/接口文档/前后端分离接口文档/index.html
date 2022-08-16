@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="keywords" content="">
+<meta name="description" content="1.接口文档1.1前后端不分离 项目缺点 HTML Java代码   问题 耦合度过高【H5、Java】，不方便维护 分工不明确 项目过大，运行速度慢     1.2前后端分离  把前端代码抽取出来，独立打成一个项目，部署到一个服务器中【node.js、nginx】  把后端代码抽取出来，独立打成一个jar包，部署到一个服务器中【tomcat】    前端通过Http请求访问后台Api接口【Con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="接口文档Swagger">
+<meta property="og:url" content="https://blossomingdream.github.io/io/2022/08/16/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="1.接口文档1.1前后端不分离 项目缺点 HTML Java代码   问题 耦合度过高【H5、Java】，不方便维护 分工不明确 项目过大，运行速度慢     1.2前后端分离  把前端代码抽取出来，独立打成一个项目，部署到一个服务器中【node.js、nginx】  把后端代码抽取出来，独立打成一个jar包，部署到一个服务器中【tomcat】    前端通过Http请求访问后台Api接口【Con">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blossomingdream.github.io/imags/1658971968830.png">
+<meta property="article:published_time" content="2022-08-16T02:12:34.000Z">
+<meta property="article:modified_time" content="2022-08-16T06:03:55.218Z">
+<meta property="article:author" content="浩洋">
+<meta property="article:tag" content="Swagger的配置以及使用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blossomingdream.github.io/imags/1658971968830.png">
+
+    <meta name="description" content="大聪明程序员">
+
+<title>
+    接口文档Swagger
+</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/io/img/iocn.png?v=1.0.2">
+
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/io/img/iocn.png?v=1.0.2">
+
+
+
+<link rel="preload" href="//at.alicdn.com/t/font_1518765_bkgx3wku6h4.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1518765_bkgx3wku6h4.css">
+
+
+<link rel="stylesheet" href="/io/css/plugins/bootstrap.min.css">
+<link rel="stylesheet" href="/io/css/plugins/locomotive-scroll.css">
+<link rel="stylesheet" href="/io/css/plugins/swiper.min.css">
+<link rel="stylesheet" href="/io/css/plugins/fancybox.min.css">
+<link rel="stylesheet" href="/io/css/plugins/font-awesome.min.css">
+
+
+<!-- variable -->
+<script>window.TYPED_TEXT=[
+  "miss you"
+]</script>
+<script>window.FAVICON={
+  "icon16": "/img/iocn.png",
+  "icon32": "/img/iocn.png",
+  "appleTouchIcon": null,
+  "webmanifest": null,
+  "visibilitychange": true,
+  "hidden": null,
+  "showText": "我在这!",
+  "hideText": "我在哪?"
+}</script>
+<script>window.HTMEM_VERSION='1.0.2'</script>
+<link data-theme-type="style-light" rel="stylesheet" href="/io/css/style-light.css?v=1.0.2" id="trm-switch-style">
+<link data-theme-type="style-dark" rel="stylesheet" href="/io/css/style-dark.css?v=1.0.2" id="trm-switch-style">
+
+<!-- theme css -->
+<script>
+    let themeMode = localStorage.getItem('theme-mode') === 'style-dark' ? 'style-light' : 'style-dark';
+    let linkdom = document.querySelector('[data-theme-type='+themeMode+']');
+    if(linkdom) linkdom.remove();
+</script>
+
+<!-- Site Analytics -->
+
+     
+
+    
+
+    
+ 
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation"><i class="far fa-sun"></i>
+        <div class="trm-horizon"></div>
+        <i class="far fa-moon"></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+            <!-- top bar -->
+            <div class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target="#content" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+			<a href="/io/" class="trm-logo-frame trm-anima-link">
+				<img src="/io/img/iocn.png" alt="logo">
+				<div class="trm-logo-text">
+					魏
+					<span>浩洋</span>
+				</div>
+			</a>
+			<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+
+			<!-- menu -->
+			<div class="trm-menu">
+				<nav>
+					<ul>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/io/">
+								首页
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/io/archives/">
+								归档
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/io/links/">
+								友链
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/io/about/">
+								关于
+							</a>
+							
+						</li>
+						
+					</ul>
+				</nav>
+			</div>
+			<!-- menu end -->
+
+			<!-- mode switcher place -->
+			<div class="trm-mode-switcher-place"></div>
+			<!-- mode switcher place end -->
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</div>
+            <!-- top bar end -->
+
+            <!-- body -->
+            <div class="trm-content-start">
+
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    <!-- banner cover -->
+    <img src="https://pic1.zhimg.com/v2-b3c2c6745b9421a13a3c4706b19223b3_r.jpg?source=1940ef5c" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3">
+    <!-- banner cover end -->
+
+    <!-- banner slideshow cover-->
+    <!-- <div class="swiper-container trm-slideshow" data-scroll data-scroll-direction="vertical" data-scroll-speed="-4">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/img/blog/b1.jpg" alt="banner" class="trm-banner-cover" data-swiper-parallax-y="-200" data-swiper-parallax-scale="1.2"></div>
+            <div class="swiper-slide"><img src="/img/blog/b2.jpg" alt="banner" class="trm-banner-cover" data-swiper-parallax-y="-200" data-swiper-parallax-scale="1.2"></div>
+            <div class="swiper-slide"><img src="/img/blog/b3.jpg" alt="banner" class="trm-banner-cover" data-swiper-parallax-y="-200" data-swiper-parallax-scale="1.2"></div>
+        </div>
+    </div> -->
+    <!-- banner slideshow cover end -->
+
+    <!-- banner video cover -->
+    <!-- <video autoplay="autoplay" loop muted playsinline webkit-playinginline class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-4">
+        <source src="img/banner.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+        <source src="img/banner.webm" type='video/webm; codecs="vp8, vorbis"'>
+        <source src="img/banner.ogg" type='video/ogg; codecs="theora, vorbis"'>
+        Your browser does not support HTML5 video.
+    </video> -->
+    <!-- banner video cover end -->
+
+    <!-- banner cover end -->
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            接口文档Swagger
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/io/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2022
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <!-- main card -->
+                <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target="#content" data-scroll-offset="60">
+        <!-- card header -->
+        <div class="trm-mc-header">
+            <div class="trm-avatar-frame trm-mb-20"><img class="trm-avatar" src="/io/img/head.jpg" alt="Avatar"> </div>
+            <h5 class="trm-name trm-mb-15">
+                还没雾散 还没花开
+            </h5>
+            <div class="trm-label">
+                I
+                <span class="trm-typed-text">
+                    <!-- Words for theme.user.typedText -->
+                </span>
+            </div>
+        </div>
+        <!-- card header end -->
+        <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+        <!-- sidebar social -->
+        <div class="trm-social">
+            
+                <a href="https://github.com" rel="nofollow" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            
+                <a href="https://gitee.com" rel="nofollow" target="_blank">
+                    <i class="iconfont cg-gitee"></i>
+                </a>
+            
+                <a href="https://weibo.com/" rel="nofollow" target="_blank">
+                    <i class="iconfont cg-weibo"></i>
+                </a>
+            
+        </div>
+        <!-- sidebar social end -->
+        <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+        <!-- info -->
+        <ul class="trm-table trm-mb-20">
+            
+                <li>
+                    <div class="trm-label">
+                        Residence:
+                    </div>
+                    <div class="trm-label trm-label-light">
+                        逍遥观
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="trm-label">
+                        City:
+                    </div>
+                    <div class="trm-label trm-label-light">
+                        郑州
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="trm-label">
+                        Age:
+                    </div>
+                    <div class="trm-label trm-label-light">
+                        24
+                    </div>
+                </li>
+            
+        </ul>
+        
+        <!-- info end -->
+        <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+        <!-- action button -->
+        <div class="text-center">
+            <a href="mailto:haoyang_wei@126.com" class="trm-btn">
+                Contact Me
+                <i class="far fa-envelope"></i>
+            </a>
+        </div>
+        <!-- action button end -->
+        
+    </div>
+</div>
+                <!-- main card end -->
+            </div>
+            <div class="col-lg-8">
+                <!-- content -->
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+                    
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="trm-card trm-label trm-label-light text-center"><i class="far fa-calendar-alt trm-icon"></i><br>
+                                08/16
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="trm-card trm-label trm-label-light text-center"><i class="far fa-clock trm-icon"></i><br>
+                                10:12
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="trm-card trm-label trm-label-light text-center"><i class="far fa-user trm-icon"></i><br>
+                                还没雾散 还没花开
+                            </div>
+                        </div>
+                    </div>
+
+                    <article class="trm-card trm-publication">
+                        <h1 id="1-接口文档"><a href="#1-接口文档" class="headerlink" title="1.接口文档"></a>1.接口文档</h1><h2 id="1-1前后端不分离"><a href="#1-1前后端不分离" class="headerlink" title="1.1前后端不分离"></a>1.1前后端不分离</h2><ul>
+<li>项目缺点<ul>
+<li>HTML</li>
+<li>Java代码</li>
+</ul>
+</li>
+<li>问题<ul>
+<li>耦合度过高【H5、Java】，不方便维护</li>
+<li>分工不明确</li>
+<li>项目过大，运行速度慢</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-2前后端分离"><a href="#1-2前后端分离" class="headerlink" title="1.2前后端分离"></a>1.2前后端分离</h2><blockquote>
+<ol>
+<li><p>把前端代码抽取出来，独立打成一个项目，部署到一个服务器中【node.js、nginx】</p>
+</li>
+<li><p>把后端代码抽取出来，独立打成一个jar包，部署到一个服务器中【tomcat】</p>
+</li>
+</ol>
+<ul>
+<li>前端通过Http请求访问后台Api接口【Controller中的一个Handler】<ul>
+<li>ajax –&gt; Api接口 –&gt; 返回数据 –&gt; H5去渲染</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="2-1-目的"><a href="#2-1-目的" class="headerlink" title="2.1 目的"></a>2.1 目的</h3><ul>
+<li>为了并行开发<ul>
+<li>前端程序员和后端程序员独立开发自己的代码，是互不影响的。</li>
+<li>而且还可以同时开发<ul>
+<li>前端怎么写？<ul>
+<li>请求发哪里？要传递什么样的参数？请求方式是什么？响应数据是什么呢？</li>
+</ul>
+</li>
+<li>后端怎么写？<ul>
+<li>请求URL是什么？给了我什么参数？请求方式是什么？我要响应什么样的数据给前端？</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/io/../../imags/1658971968830.png"></p>
+<hr>
+<h1 id="2-swagger"><a href="#2-swagger" class="headerlink" title="2.swagger"></a>2.swagger</h1><h2 id="2-1介绍"><a href="#2-1介绍" class="headerlink" title="2.1介绍"></a>2.1介绍</h2><ul>
+<li><p>概述：一款可以用于生成在线接口的框架</p>
+</li>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://swagger.io/">https://swagger.io/</a></p>
+</li>
+<li><p>作用</p>
+<ul>
+<li>使得前后端分离开发更加方便，有利于团队协作</li>
+<li>接口文档在线自动生成，降低后端开发人员编写接口文档的负担</li>
+<li>接口功能测试</li>
+</ul>
+</li>
+<li><p>knife4j</p>
+<ul>
+<li>是为Java MVC框架集成Swagger生成Api文档的增强解决方案</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2使用步骤"><a href="#2-2使用步骤" class="headerlink" title="2.2使用步骤"></a>2.2使用步骤</h2><h3 id="2-2-1导入依赖"><a href="#2-2-1导入依赖" class="headerlink" title="2.2.1导入依赖"></a>2.2.1导入依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 只能访问增强页面 doc.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.xiaoymin<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>knife4j-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2配置类"><a href="#2-2-2配置类" class="headerlink" title="2.2.2配置类"></a>2.2.2配置类</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableSwagger2</span></span><br><span class="line"><span class="meta">@EnableKnife4j</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-3配置接口文档的信息"><a href="#2-2-3配置接口文档的信息" class="headerlink" title="2.2.3配置接口文档的信息"></a>2.2.3配置接口文档的信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> Docket <span class="title function_">createRestApi</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 文档类型</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Docket</span>(DocumentationType.SWAGGER_2)   <span class="comment">//swagger版本</span></span><br><span class="line">            .apiInfo(apiInfo())  <span class="comment">//当前项目接口的详细信息</span></span><br><span class="line">            .select()   <span class="comment">//过滤条件</span></span><br><span class="line">            <span class="comment">//basePackage 路径必须扫描到所有的controller</span></span><br><span class="line">            .apis(RequestHandlerSelectors.basePackage(<span class="string">&quot;扫描controller&quot;</span>))</span><br><span class="line">            .paths(PathSelectors.any())</span><br><span class="line">            .build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> ApiInfo <span class="title function_">apiInfo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ApiInfoBuilder</span>()</span><br><span class="line">            <span class="comment">//文档标题</span></span><br><span class="line">            .title(<span class="string">&quot;文档标题&quot;</span>)</span><br><span class="line">            <span class="comment">//文档版本</span></span><br><span class="line">            .version(<span class="string">&quot;1.0&quot;</span>)</span><br><span class="line">            <span class="comment">//文档描述</span></span><br><span class="line">            .description(<span class="string">&quot;文档标题接口文档&quot;</span>)</span><br><span class="line">            <span class="comment">//作者</span></span><br><span class="line">            .contact(<span class="keyword">new</span> <span class="title class_">Contact</span>(<span class="string">&quot;作者&quot;</span>, <span class="string">&quot;http://www.作者.com&quot;</span>, <span class="string">&quot;作者@作</span></span><br><span class="line"><span class="string">            者.cn&quot;</span>))</span><br><span class="line">            .build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-3释放静态资源"><a href="#2-2-3释放静态资源" class="headerlink" title="2.2.3释放静态资源"></a>2.2.3释放静态资源</h3><ul>
+<li>springmvc配置<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span></span><br><span class="line">    registry.addResourceHandler(<span class="string">&quot;doc.html&quot;</span>).addResourceLocations(<span class="string">&quot;classpath:/META-INF/resources/&quot;</span>);</span><br><span class="line">    registry.addResourceHandler(<span class="string">&quot;swagger-ui.html&quot;</span>).addResourceLocations(<span class="string">&quot;classpath:/META-INF/resources/&quot;</span>);</span><br><span class="line">    registry.addResourceHandler(<span class="string">&quot;/webjars/**&quot;</span>).addResourceLocations(<span class="string">&quot;classpath:/META-INF/resources/webjars/&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置拦截器过滤器要释放掉</span></span><br><span class="line"><span class="string">&quot;/doc.html&quot;</span>,</span><br><span class="line"><span class="string">&quot;/webjars/**&quot;</span>,</span><br><span class="line"><span class="string">&quot;/swagger-resources&quot;</span>,</span><br><span class="line"><span class="string">&quot;/v2/api-docs&quot;</span>,</span><br><span class="line"><span class="string">&quot;swagger-ui.html&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-2-4测试生成接口文档"><a href="#2-2-4测试生成接口文档" class="headerlink" title="2.2.4测试生成接口文档"></a>2.2.4测试生成接口文档</h3><p><em><a target="_blank" rel="noopener" href="http://localhost:8080/doc.html">http://localhost:8080/doc.html</a></em></p>
+<h2 id="2-3-swagger常用注解"><a href="#2-3-swagger常用注解" class="headerlink" title="2.3 swagger常用注解"></a>2.3 swagger常用注解</h2><ul>
+<li><p>直接使用Swagge r生成接口文档，可读性比较差</p>
+</li>
+<li><p>可以通过注解来进行标识，增加可读性</p>
+</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>位置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Api</td>
+<td>类</td>
+<td>加载Controller类上,表示对类的说明</td>
+</tr>
+<tr>
+<td>@ApiOperation</td>
+<td>方法</td>
+<td></td>
+</tr>
+<tr>
+<td>@ApiImplicitParams</td>
+<td>方法</td>
+<td></td>
+</tr>
+<tr>
+<td>@ApiImplicitParam</td>
+<td>方法</td>
+<td></td>
+</tr>
+<tr>
+<td>@ApiModel</td>
+<td>类(通常是实体类)</td>
+<td>描述实体类的作用</td>
+</tr>
+<tr>
+<td>@ApiModelProperty</td>
+<td>属性</td>
+<td>描述实体类的属性</td>
+</tr>
+</tbody></table>
+<h2 id="2-4代码演示"><a href="#2-4代码演示" class="headerlink" title="2.4代码演示"></a>2.4代码演示</h2><ul>
+<li>实体类接口生成注解<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ApiModel(&quot;菜品&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dish</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//菜品名称</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;菜品名称&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//其他属性</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>返回值实体类接口<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ApiModel(&quot;通用返回结果实体&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">R</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;响应状态码&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer code; <span class="comment">//编码：1成功，0和其它数字为失败</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;响应消息&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String msg; <span class="comment">//错误信息</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;附加数据&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> T data; <span class="comment">//数据</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(&quot;动态数据&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">Map</span> <span class="variable">map</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HashMap</span>(); <span class="comment">//动态数据</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//.........</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>实体类生成注解</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Api(tags=&quot;接口名称&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DishController</span> &#123;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 新增菜品</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dishDto</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;这个方法是干啥的&quot;, tags = &quot;新增菜品tag&quot;)</span></span><br><span class="line">    <span class="meta">@ApiImplicitParams(&#123;</span></span><br><span class="line"><span class="meta">            @ApiImplicitParam(name=&quot;菜品Dto&quot;,</span></span><br><span class="line"><span class="meta">                    value = &quot;菜品Dto&quot;,</span></span><br><span class="line"><span class="meta">                    paramType = &quot;body&quot;,   //使用流接收当前参数</span></span><br><span class="line"><span class="meta">                    required = true,</span></span><br><span class="line"><span class="meta">                    dataTypeClass = DishDto.class)</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line">        <span class="keyword">public</span> R&lt;String&gt; <span class="title function_">save</span><span class="params">(<span class="meta">@RequestBody</span> DishDto dishDto)</span>&#123;</span><br><span class="line">        log.info(dishDto.toString());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> R.success(<span class="string">&quot;新增菜品成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">//value:假象值</span></span><br><span class="line">    <span class="comment">//name:参数</span></span><br><span class="line">    <span class="comment">//required:是否必须接收此参数</span></span><br><span class="line">    <span class="comment">//datatypeClass 参数类型</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 菜品信息分页查询</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> page</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pageSize</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/page&quot;)</span></span><br><span class="line">    <span class="meta">@ApiOperation(value = &quot;分页条件查询菜品&quot;, tags = &quot;分页条件查询菜品tag&quot;)</span></span><br><span class="line">    <span class="meta">@ApiImplicitParams(&#123;</span></span><br><span class="line"><span class="meta">            @ApiImplicitParam(name=&quot;page&quot;, value = &quot;1&quot;, required = true, dataTypeClass = Integer.class),</span></span><br><span class="line"><span class="meta">            @ApiImplicitParam(name=&quot;pageSize&quot;, value = &quot;10&quot;, required = true, dataTypeClass = Integer.class),</span></span><br><span class="line"><span class="meta">            @ApiImplicitParam(name=&quot;name&quot;, value = &quot;大头虾&quot;, required = false, dataTypeClass = String.class)</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<p>完
+    </p>
+
+                    </article>
+
+                    <!-- blog -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- title -->
+                            <h5 class="trm-mb-40 trm-title-with-divider">
+                                Other Articles
+                                <span data-number="02"></span>
+                            </h5>
+                        </div>
+                        
+                        
+                            <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/io/2022/08/13/es/es%E5%B8%B8%E7%94%A8API/" class="trm-cover-frame trm-anima-link">
+            <img src="/io/img/block.jpg" alt="cover">
+        </a>
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /io/categories/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E7%B1%BB/">
+                    配置代码类
+                </a>
+            </div>
+            <h5>
+                <a href="/io/2022/08/13/es/es%E5%B8%B8%E7%94%A8API/" class="trm-anima-link">
+                    es配置在java中及常用设计
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>
+                    08/13
+                </li>
+                <li>
+                    04:40
+                </li>
+                <li>
+                    2.5k
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+                        
+                    </div>
+                    <!-- blog end -->
+
+                    
+
+                    <div class="trm-divider trm-mb-40"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+    <div class="trm-label">
+        ©  2019- 2022 ·
+        <span class="trm-accent-color">
+            还没雾散 还没花开
+        </span>
+    </div>
+    <div class="trm-label">
+        The blog has been lovely to run:
+        <span id="since" class="trm-accent-color"></span>
+        day
+    </div>
+</footer>
+<script>
+    function show_date_time () {
+        BirthDay = new Date("07/22/2022 17:00:00");
+        today = new Date();
+        timeold = (today.getTime() - BirthDay.getTime());
+        msPerDay = 24 * 60 * 60 * 1000
+        day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+                    <!-- footer end -->
+                </div>
+                <!-- content end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+  
+  
+            <!-- body end -->
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+      <!-- mode switcher -->
+      <div class="trm-hidden-switcher">
+        <div class="trm-mode-switcher"><i class="far fa-sun"></i>
+          <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+          <label class="trm-swich" for="trm-swich"></label>
+          <i class="far fa-moon"></i>
+        </div>
+      </div>
+      <!-- mode switcher end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  
+<script src="/io/js/plugins/jquery.min.js"></script>
+<script src="/io/js/plugins/swup.min.js"></script>
+<script src="/io/js/plugins/locomotive-scroll.js"></script>
+<script src="/io/js/plugins/typing.js"></script>
+<script src="/io/js/plugins/fancybox.min.js"></script>
+<script src="/io/js/plugins/swiper.min.js"></script>
+
+
+<!-- 评论插件 -->
+
+
+<!-- Service Worker -->
+
+
+<script src="/io/js/main.js?v=1.0.2"></script>
+
+
+</body>
+
+</html>
